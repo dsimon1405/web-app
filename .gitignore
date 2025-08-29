@@ -4,6 +4,12 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+
+kuber_with_db
+kubernetes_presentation
+dashboard-adminuser.yaml
+
+
 ### STS ###
 .apt_generated
 .classpath
