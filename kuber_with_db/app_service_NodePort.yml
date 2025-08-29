@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-service-node-port
+spec:
+  selector:
+    app: web-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 82
+      targetPort: 8080
+      nodePort: 30000   # uses with (type: NodePort), diapason 30000-32767
+
+#     don't work on Windows with minikube in Docker, in my case as work in guide (don't work without => minikube tunnel OR minikube service web-app-service-node-port --url)
+#     next don't work
+#   minikube ip   =>    192.168.49.2
+#   kubectl get svc   =>    web-app-service   NodePort    10.98.42.158     <none>        8080:30000/TCP   12h
+#   curl http://192.168.49.2:30000/web-app/hello    =>    error in my case Windows with minikube in Docker ...

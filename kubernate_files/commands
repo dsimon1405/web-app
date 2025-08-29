@@ -1,0 +1,20 @@
+    //  start minikube
+minikube start --driver=docker
+    //  see clusters
+minikube profile list
+    //  get api of the minikube container (last word is name of the container)
+docker inspect --format='{{range $key, $value := .NetworkSettings.Networks}}{{$key}}: {{$value.IPAddress}}{{end}}' minikube
+
+    //  deploy yml file to started container
+kubectl apply -f deployment.yml
+    //  may look created deployment
+kubectl get deployment.apps/web-app-example
+
+    //  expose port for created deployment (name from the deployment.yml)
+kubectl expose --type=NodePort deployment/web-app-example
+    //  use yml for creating service
+kubectl apply -f service.yml
+    //  show service info
+kubectl get svc
+    //  get access to service in cluster on windows must be opened terminal (web-app-service name of the service)
+minikube service web-app-service --url

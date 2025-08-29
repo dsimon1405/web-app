@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  selector:
+    app: mysql
+  ports:
+    - protocol: TCP
+      port: 3307    # container listen clients at that port
+      targetPort: 3306  # container connect to the mysql
+  type: ClusterIP

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: web-app_namespace
+  name: web-app_service
+  labels:
+    app: web-app_service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: web
+  selector:
+    app: minikube-demo

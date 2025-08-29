@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+#  namespace: web-app_namespace
+  name: web-app-service
+  labels:
+    app: web-app
+spec:
+  type: LoadBalancer
+#  type: NodePort
+#  type: ClusterIP  # uses as port inside the cluster
+  ports:
+    - port: 8080
+      targetPort: 8080
+#      name: web
+  selector:
+    app: web-app

@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  app:
+ #                                       build from Dockerfile
+    build:
+      context: '.'  # path to Dockerfile
+      dockerfile: 'Dockerfile'
+#                                      # create from image (from the repository)
+#    image: simon1405/hibernate-app:1.0
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3307/web-app-db  # app connect to the localhost on port 3307
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/web-app-db  # connect on port 3306 into the container => depends_on: - mysql-db
+
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1qazxsw2
+#    depends_on:
+#      - mysql-db  # service lower
+#
+#  mysql-db:
+#    image: mysql:8.0  # load official mysql image version 8.0 from docker hub
+#    environment:
+#      MYSQL_ROOT_PASSWORD: 1qazxsw2
+#      MYSQL_DATABASE: hibernate_db  # create database
+#    ports:
+#      - "3307:3306"

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  namespace: web-app_namespace
+  labels:
+    app: web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: web-app_container   # set container name
+          image: ${DOCKER_IMAGE_NAME} #image fron
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+              name: web
